@@ -127,15 +127,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Constants.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="UI.cpp" />
+    <ClInclude Include="AboutScreen.h" />
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="MenuScreen.h" />
+    <ClInclude Include="SettingsScreen.h" />
+    <ClInclude Include="TextBox.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Constants.h" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="UI.h" />
+    <ClCompile Include="AboutScreen.cpp" />
+    <ClCompile Include="Constants.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuScreen.cpp" />
+    <ClCompile Include="SettingsScreen.cpp" />
+    <ClCompile Include="TextBox.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
