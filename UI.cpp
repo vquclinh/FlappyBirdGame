@@ -1,7 +1,7 @@
 ﻿#include "UI.h"
 
 UI::UI()
-    : window(sf::VideoMode(800, 600), "Flappy Bird"),
+    : window(sf::VideoMode(Screen_w, Screen_h), "Flappy Bird"),
     currentState(ScreenState::MAINMENU),
     menu(window),      // Truyền window vào constructor của MenuScreen
     settings(window),  // Truyền window vào constructor của SettingsScreen
