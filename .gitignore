@@ -9,7 +9,7 @@
 *.tlog
 *.log
 
-# Visual Studio files
+# Visual Studio generated files
 *.vcxproj.user
 *.vcxproj.filters
 .vscode/
@@ -17,5 +17,8 @@ Debug/
 Release/
 x64/
 x86/
-ipch/
+
+# IntelliSense and cache
 .vs/
+**/*.ipch
+*.ipch
