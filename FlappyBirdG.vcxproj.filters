@@ -7,6 +7,11 @@
     <ClInclude Include="AboutScreen.h" />
     <ClInclude Include="SettingsScreen.h" />
     <ClInclude Include="TextBox.h" />
+    <ClInclude Include="PlayScreen.h" />
+    <ClInclude Include="RoundedRectangleShape.h" />
+    <ClInclude Include="Bird.h" />
+    <ClInclude Include="PipeManager.h" />
+    <ClInclude Include="ScoreManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MenuScreen.cpp" />
@@ -16,5 +21,10 @@
     <ClCompile Include="SettingsScreen.cpp" />
     <ClCompile Include="Constants.cpp" />
     <ClCompile Include="TextBox.cpp" />
+    <ClCompile Include="PlayScreen.cpp" />
+    <ClCompile Include="RoundedRectangleShape.cpp" />
+    <ClCompile Include="Bird.cpp" />
+    <ClCompile Include="PipeManager.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
   </ItemGroup>
 </Project>

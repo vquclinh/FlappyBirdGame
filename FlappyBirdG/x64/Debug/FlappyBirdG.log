@@ -1,19 +1,7 @@
-﻿  AboutScreen.cpp
-L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\AboutScreen.cpp(38,52): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\AboutScreen.cpp(38,52): warning C4244:         with
-L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\AboutScreen.cpp(38,52): warning C4244:         [
-L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\AboutScreen.cpp(38,52): warning C4244:             T=unsigned int
-L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\AboutScreen.cpp(38,52): warning C4244:         ]
-L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\AboutScreen.cpp(39,52): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\AboutScreen.cpp(39,52): warning C4244:         with
-L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\AboutScreen.cpp(39,52): warning C4244:         [
-L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\AboutScreen.cpp(39,52): warning C4244:             T=unsigned int
-L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\AboutScreen.cpp(39,52): warning C4244:         ]
-L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\AboutScreen.cpp(42,23): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
-L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\AboutScreen.cpp(42,23): warning C4244:         with
-L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\AboutScreen.cpp(42,23): warning C4244:         [
-L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\AboutScreen.cpp(42,23): warning C4244:             T=unsigned int
-L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\AboutScreen.cpp(42,23): warning C4244:         ]
+﻿  PlayScreen.cpp
+  UI.cpp
+  main.cpp
+  Generating Code...
   FlappyBirdG.vcxproj -> L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\x64\Debug\FlappyBirdG.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

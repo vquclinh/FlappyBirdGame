@@ -1,6 +1,6 @@
 ﻿#include "MenuScreen.h"
 
-MenuScreen::MenuScreen(sf::RenderWindow& win) : window(win) {
+MenuScreen::MenuScreen(sf::RenderWindow& win) : window(win), textBox(sf::Vector2f(0, 0), sf::Vector2f(50, 20), &font, 28){
     font.loadFromFile("Assets/Fonts/LilitaOne-Regular.ttf");
     init();
 }
@@ -55,7 +55,7 @@ void MenuScreen::init() {
     nameLabel.setFont(font);
     nameLabel.setString("Enter Name:");
     nameLabel.setCharacterSize(28);
-    nameLabel.setPosition(centerX - nameLabel.getGlobalBounds().width / 2, 150);
+    nameLabel.setPosition(centerX - nameLabel.getGlobalBounds().width / 2 - 75, 150);
     nameLabel.setFillColor(sf::Color(105, 129, 136, 225));
 
     nameInput.setFont(font);
@@ -64,7 +64,6 @@ void MenuScreen::init() {
     nameInput.setPosition(centerX - nameInput.getGlobalBounds().width / 2, 190);
 
     playButton.setSize({ 200, 50 });
-    playButton.setFillColor(sf::Color(40, 203, 114, 225));
     playButton.setPosition(centerX - 100, 260);
     playText.setFont(font);
     playText.setString("Play");
@@ -72,7 +71,6 @@ void MenuScreen::init() {
     playText.setPosition(centerX - playText.getGlobalBounds().width / 2, 270);
 
     settingsButton.setSize({ 200, 50 });
-    settingsButton.setFillColor(sf::Color(28, 83, 248, 225));
     settingsButton.setPosition(centerX - 100, 330);
     settingsText.setFont(font);
     settingsText.setString("Settings");
@@ -80,25 +78,25 @@ void MenuScreen::init() {
     settingsText.setPosition(centerX - settingsText.getGlobalBounds().width / 2, 340);
 
     aboutButton.setSize({ 200, 50 });
-    aboutButton.setFillColor(sf::Color(222, 209, 38, 225));
     aboutButton.setPosition(centerX - 100, 400);
     aboutText.setFont(font);
     aboutText.setString("About");
     aboutText.setCharacterSize(24);
     aboutText.setPosition(centerX - aboutText.getGlobalBounds().width / 2, 410);
+
+    // Đặt lại vị trí của textBox 
+    sf::Vector2f nameLabelPos = nameLabel.getPosition();
+    float textBoxWidth = 150;
+    float textBoxHeight = 40;
+    sf::Vector2f textBoxPos(
+        nameLabelPos.x + 168,
+        nameLabelPos.y
+    );
+    textBox.setPosition(textBoxPos);
+    textBox.setSize(sf::Vector2f(textBoxWidth, textBoxHeight));
 }
 
 void MenuScreen::handleEvent(sf::Event& event, ScreenState& state) {
-    if (event.type == sf::Event::TextEntered && typing) {
-        if (event.text.unicode == 8 && !playerName.empty()) {
-            playerName.pop_back();
-        }
-        else if (event.text.unicode < 128 && playerName.size() < 15 && event.text.unicode != 8) {
-            playerName += static_cast<char>(event.text.unicode);
-        }
-        nameInput.setString(playerName);
-    }
-
     if (event.type == sf::Event::MouseButtonPressed) {
         sf::Vector2f mouse(sf::Mouse::getPosition(window));
 
@@ -114,7 +112,11 @@ void MenuScreen::handleEvent(sf::Event& event, ScreenState& state) {
         if (aboutButton.getGlobalBounds().contains(mouse)) {
             state = ScreenState::ABOUT;
         }
+        if (playButton.getGlobalBounds().contains(mouse)) {
+            state = ScreenState::GAMEPLAY;
+        }
     }
+    textBox.handleEvent(event);
 }
 
 void MenuScreen::update() {
@@ -150,6 +152,16 @@ void MenuScreen::update() {
     if (backgroundSpriteLayer6_2.getPosition().x <= -layer6Width) {
         backgroundSpriteLayer6_2.setPosition(layer6Width, 0);
     }
+
+    isPlayHovered = playButton.getGlobalBounds().contains(mouse);
+    isSettingsHovered = settingsButton.getGlobalBounds().contains(mouse);
+    isAboutHovered = aboutButton.getGlobalBounds().contains(mouse);
+
+    playButton.setFillColor(isPlayHovered ? sf::Color(40, 203, 114, 100) : sf::Color(40, 203, 114, 225));
+    settingsButton.setFillColor(isSettingsHovered ? sf::Color(28, 83, 248, 100) : sf::Color(28, 83, 248, 225));
+    aboutButton.setFillColor(isAboutHovered ? sf::Color(222, 209, 38, 100) : sf::Color(222, 209, 38, 225));
+    
+    textBox.update(deltaTime);
 }
 
 void MenuScreen::draw() {
@@ -172,8 +184,10 @@ void MenuScreen::draw() {
     window.draw(settingsText);
     window.draw(aboutButton);
     window.draw(aboutText);
+
+    textBox.draw(window);
 }
 
 std::string MenuScreen::getPlayerName() const {
-    return playerName;
+    return textBox.getText();
 }

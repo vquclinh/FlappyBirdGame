@@ -68,7 +68,6 @@ AboutScreen::AboutScreen(sf::RenderWindow& win) : window(win) {
 
     // Thiết lập backButton
     backButton.setSize({ 150, 50 });
-    backButton.setFillColor(sf::Color(7, 52, 153, 110));
     backButton.setPosition(centerX - 75, 500); // Căn giữa button: centerX - width/2
 
     // Thiết lập backText
@@ -132,6 +131,9 @@ void AboutScreen::update() {
     if (backgroundSpriteLayer6_2.getPosition().x <= -layer6Width) {
         backgroundSpriteLayer6_2.setPosition(layer6Width, 0);
     }
+
+    isBackHovered = backButton.getGlobalBounds().contains(mouse);
+    backButton.setFillColor(isBackHovered ? sf::Color(7, 52, 153, 80) : sf::Color(7, 52, 153, 160));
 }
 
 void AboutScreen::draw() {

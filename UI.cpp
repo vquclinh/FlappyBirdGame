@@ -5,15 +5,19 @@ UI::UI()
     currentState(ScreenState::MAINMENU),
     menu(window),      // Truyền window vào constructor của MenuScreen
     settings(window),  // Truyền window vào constructor của SettingsScreen
-    about(window)      // Truyền window vào constructor của AboutScreen
+    about(window),      // Truyền window vào constructor của AboutScreen
+    play(window)
 {
     window.setFramerateLimit(60);  // Giới hạn số khung hình
+    
+    audio.Init();
 }
 
 void UI::run() {
+    float dt = clock.restart().asSeconds();
     while (window.isOpen()) {
         processEvents();  // Xử lý sự kiện
-        update();         // Cập nhật trạng thái
+        update(dt);         // Cập nhật trạng thái
         render();         // Vẽ lại cửa sổ
     }
 }
@@ -35,13 +39,14 @@ void UI::processEvents() {
             about.handleEvent(event, currentState);  // Xử lý sự kiện cho màn hình giới thiệu
             break;
         case ScreenState::GAMEPLAY:
-            // TODO: Xử lý sự kiện cho gameplay
+            play.handleInput(event, currentState);
             break;
         }
     }
 }
 
-void UI::update() {
+void UI::update(float dt) {
+    audio.Update();
     switch (currentState) {
     case ScreenState::MAINMENU:
         menu.update();  // Cập nhật màn hình menu
@@ -53,7 +58,7 @@ void UI::update() {
         about.update();  // Cập nhật màn hình giới thiệu
         break;
     case ScreenState::GAMEPLAY:
-        // TODO: Cập nhật trạng thái gameplay
+        play.update(dt);
         break;
     }
 }
@@ -72,9 +77,13 @@ void UI::render() {
         about.draw();  // Vẽ giới thiệu
         break;
     case ScreenState::GAMEPLAY:
-        // TODO: Vẽ gameplay
+        play.render();
         break;
     }
 
-    window.display();  // Hiển thị nội dung lên cửa sổ
+    window.display();
+}
+
+UI::~UI() {
+    audio.Unload();
 }

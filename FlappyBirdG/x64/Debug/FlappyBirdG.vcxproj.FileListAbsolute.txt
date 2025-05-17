@@ -8,3 +8,10 @@ L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\x64\Debug\libpng16d.dll
 L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\x64\Debug\brotlidec.dll
 L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\x64\Debug\brotlicommon.dll
 L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\FlappyBirdG\x64\Debug\FlappyBi.38CE0FBE.Up2Date
+L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\x64\Debug\sfml-audio-d-2.dll
+L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\x64\Debug\OpenAL32.dll
+L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\x64\Debug\vorbisenc.dll
+L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\x64\Debug\vorbis.dll
+L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\x64\Debug\ogg.dll
+L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\x64\Debug\vorbisfile.dll
+L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\x64\Debug\FLAC.dll

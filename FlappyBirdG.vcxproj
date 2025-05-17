@@ -128,17 +128,27 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AboutScreen.h" />
+    <ClInclude Include="Bird.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="MenuScreen.h" />
+    <ClInclude Include="PipeManager.h" />
+    <ClInclude Include="PlayScreen.h" />
+    <ClInclude Include="RoundedRectangleShape.h" />
+    <ClInclude Include="ScoreManager.h" />
     <ClInclude Include="SettingsScreen.h" />
     <ClInclude Include="TextBox.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AboutScreen.cpp" />
+    <ClCompile Include="Bird.cpp" />
     <ClCompile Include="Constants.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
+    <ClCompile Include="PipeManager.cpp" />
+    <ClCompile Include="PlayScreen.cpp" />
+    <ClCompile Include="RoundedRectangleShape.cpp" />
+    <ClCompile Include="ScoreManager.cpp" />
     <ClCompile Include="SettingsScreen.cpp" />
     <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="UI.cpp" />

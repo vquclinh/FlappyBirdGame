@@ -37,6 +37,8 @@ private:
 
     float cloudX = 0.0f, fenceX = 0.0f;
 
+    bool isBackHovered = false;
+
     sf::RectangleShape backButton;
     sf::Text backText;
 };

@@ -9,10 +9,12 @@ enum ScreenState {
     ABOUT
 };
 
-const int Screen_h = 900;
-const int Screen_w = 1600;
+const int Screen_w = 1280;
+const int Screen_h = 720;
 
-const unsigned int WINDOW_WIDTH = 800;
-const unsigned int WINDOW_HEIGHT = 600;
+const int game_w = 480;
+const int game_h = 800;
+
+const int offsetX = (Screen_w - game_w) / 2;
 
 extern std::string playerName;

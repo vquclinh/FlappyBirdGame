@@ -1,7 +1,12 @@
 L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\AboutScreen.cpp;L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\FlappyBirdG\x64\Debug\AboutScreen.obj
+L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\Bird.cpp;L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\FlappyBirdG\x64\Debug\Bird.obj
 L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\Constants.cpp;L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\FlappyBirdG\x64\Debug\Constants.obj
 L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\main.cpp;L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\FlappyBirdG\x64\Debug\main.obj
 L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\MenuScreen.cpp;L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\FlappyBirdG\x64\Debug\MenuScreen.obj
+L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\PipeManager.cpp;L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\FlappyBirdG\x64\Debug\PipeManager.obj
+L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\PlayScreen.cpp;L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\FlappyBirdG\x64\Debug\PlayScreen.obj
+L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\RoundedRectangleShape.cpp;L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\FlappyBirdG\x64\Debug\RoundedRectangleShape.obj
+L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\ScoreManager.cpp;L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\FlappyBirdG\x64\Debug\ScoreManager.obj
 L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\SettingsScreen.cpp;L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\FlappyBirdG\x64\Debug\SettingsScreen.obj
 L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\TextBox.cpp;L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\FlappyBirdG\x64\Debug\TextBox.obj
 L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\UI.cpp;L:\PROJECT - VS2022\FLAPPY BIRD\FlappyBirdGame\FlappyBirdG\x64\Debug\UI.obj

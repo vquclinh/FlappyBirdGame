@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "Constants.h"
+#include "TextBox.h"
 
 class MenuScreen {
 public:
@@ -10,7 +11,6 @@ public:
     void draw();
     void update();
     std::string getPlayerName() const;
-
 private:
     sf::RenderWindow& window;
     sf::Font font;
@@ -18,7 +18,6 @@ private:
     sf::RectangleShape playButton, settingsButton, aboutButton;
     sf::Text playText, settingsText, aboutText;
 
-    std::string playerName;
     bool typing = false;
 
     // Background image
@@ -38,6 +37,12 @@ private:
     sf::Sprite backgroundSpriteLayer6_2;
     
     float cloudX = 0.0f, fenceX = 0.0f;
+
+    bool isPlayHovered = false;
+    bool isSettingsHovered = false;
+    bool isAboutHovered = false;
+
+    TextBox textBox;
 
     void init();
 };
