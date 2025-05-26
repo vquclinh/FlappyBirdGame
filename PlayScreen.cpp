@@ -3,183 +3,202 @@
 #include <sstream>
 
 PlayGame::PlayGame(sf::RenderWindow& win)
-    : window(win), gameState(Playing)
+    : window(win), gameState(Preparing)
 {
+    font.loadFromFile("Assets/Fonts/LilitaOne-Regular.ttf");
     loadBackground();
-    restart();
+    restart();  
+    overlay.setSize(sf::Vector2f(window.getSize()));
+    overlay.setFillColor(sf::Color(0, 0, 0, 120));
+    box.setSize(sf::Vector2f(300.f, 150.f));
+    box.setPosition((Screen_w - box.getSize().x) / 2, (Screen_h - box.getSize().y) / 2);
+    box.setFillColor(sf::Color(255, 255, 255, 255));
+    box.setOutlineThickness(2.f);
+    box.setOutlineColor(sf::Color(0, 0, 0, 200));
 }
 
 void PlayGame::loadBackground() {
     // Tải background
-    if (!backgroundTexture.loadFromFile("Assets/Images/full-bg.png")) {
-        std::cerr << "Failed to load background image\n";
-    }
-    backgroundSprite.setTexture(backgroundTexture);
+    playBoundsTexture.loadFromFile("Assets/Images/background.png");
+    playBoundsSprite1.setTexture(playBoundsTexture);
+    playBoundsSprite2.setTexture(playBoundsTexture);
+    playBoundsSprite3.setTexture(playBoundsTexture);
 
-    float scaleX = window.getSize().x / static_cast<float>(backgroundTexture.getSize().x);
-    float scaleY = window.getSize().y / static_cast<float>(backgroundTexture.getSize().y);
-    float scale = std::max(scaleX, scaleY);
+    sf::Vector2u textureSize = playBoundsTexture.getSize();
+    sf::Vector2u windowSize = window.getSize();
+    float scaleX = (float)windowSize.x / textureSize.x;
+    float scaleY = (float)windowSize.y / textureSize.y;
 
-    backgroundSprite.setScale(scale, scale);
-    backgroundSprite.setPosition(0.f, 0.f);
+    playBoundsSprite1.setScale(scaleX, scaleY);
+    playBoundsSprite2.setScale(scaleX, scaleY);
+    playBoundsSprite3.setScale(scaleX, scaleY);
 
-    sf::Vector2f spriteSize(backgroundTexture.getSize().x * scale, backgroundTexture.getSize().y * scale);
-    if (spriteSize.x > window.getSize().x) {
-        backgroundSprite.setPosition(-(spriteSize.x - window.getSize().x) / 2.f, backgroundSprite.getPosition().y);
-    }
-    if (spriteSize.y > window.getSize().y) {
-        backgroundSprite.setPosition(backgroundSprite.getPosition().x, -(spriteSize.y - window.getSize().y) / 2.f);
-    }
+    playBoundsSprite2.setPosition(windowSize.x, 0);
+    playBoundsSprite3.setPosition(windowSize.x * 2, 0);
 
-    // Tải và scale Panel.png
-    if (!panelTexture.loadFromFile("Assets/Images/Panel.png")) {
-        std::cerr << "Failed to load panel image\n";
-    }
-    panelSprite.setTexture(panelTexture);
-    panelSprite.setPosition(5.f, -50.f);
+    // Back Button
+    backButton.setSize({ 90, 30 });
+    backButton.setPosition(20, Screen_h - 50);
 
-    sf::Vector2u panelSize = panelTexture.getSize();
-    float targetWidth = 350.f;
-    float targetHeight = 410.f;
-    float panelScaleX = targetWidth / static_cast<float>(panelSize.x);
-    float panelScaleY = targetHeight / static_cast<float>(panelSize.y);
-    panelSprite.setScale(panelScaleX, panelScaleY);
+    backText.setFont(font);
+    backText.setString("Back");
+    backText.setCharacterSize(22);
+    backText.setFillColor(sf::Color::White);
 
-    // Tải và scale Back.png 
-    if (!backTexture.loadFromFile("Assets/Images/Back.png")) {
-        std::cerr << "Failed to load back image\n";
-    }
-    backSprite.setTexture(backTexture);
-    backSprite.setPosition(130.f, 240.f);
-
-    sf::Vector2u backSize = backTexture.getSize();
-    float targetWidth2 = 100.f;
-    float targetHeight2 = 100.f;
-    float backScaleX = targetWidth2 / static_cast<float>(backSize.x);
-    float backScaleY = targetHeight2 / static_cast<float>(backSize.y);
-    backSprite.setScale(backScaleX, backScaleY);
+    sf::FloatRect buttonBounds = backButton.getGlobalBounds();
+    sf::FloatRect textBounds = backText.getGlobalBounds();
+    backText.setOrigin(textBounds.left + textBounds.width / 2.f, textBounds.top + textBounds.height / 2.f);
+    backText.setPosition(backButton.getPosition().x + backButton.getSize().x / 2.f, backButton.getPosition().y + backButton.getSize().y / 2.f);
 }
 
 void PlayGame::setupUI() {
-    if (!font.loadFromFile("Assets/Fonts/LilitaOne-Regular.ttf")) {
-        std::cerr << "Failed to load font\n";
-    }
-
     // Player Name
     playerLabelText.setFont(font);
     playerLabelText.setString("Player: ");
-    playerLabelText.setCharacterSize(24);
+    playerLabelText.setCharacterSize(22);
     playerLabelText.setFillColor(sf::Color(63, 59, 125));
-    playerLabelText.setPosition(50.f, 75.f);
+    playerLabelText.setPosition(box.getPosition().x + 10.f, box.getPosition().y + 10.f);
 
     playerNameText.setFont(font);
     playerNameText.setString(playerName);
-    playerNameText.setCharacterSize(24);
+    playerNameText.setCharacterSize(22);
     playerNameText.setFillColor(sf::Color(137, 4, 133, 225));
 
-    sf::FloatRect labelBounds = playerLabelText.getGlobalBounds();
-    playerNameText.setPosition(labelBounds.left + labelBounds.width + 5.f, 75.f);
+    playerNameText.setPosition(playerLabelText.getPosition().x + playerLabelText.getGlobalBounds().width + 5.f, playerLabelText.getPosition().y);
 
     // Highest Score
     highScoreLabel.setFont(font);
-    highScoreLabel.setString("High Score: ");
-    highScoreLabel.setCharacterSize(24);
+    highScoreLabel.setString("Highest Score: ");
+    highScoreLabel.setCharacterSize(22);
     highScoreLabel.setFillColor(sf::Color(63, 59, 125, 255));
-    highScoreLabel.setPosition(50.f, 110.f);
+    highScoreLabel.setPosition(box.getPosition().x + 10.f, box.getPosition().y + 40.f);
 
     highScoreValue.setFont(font);
-    highScoreValue.setString(std::to_string(highestScore));
-    highScoreValue.setCharacterSize(24);
+    highScoreValue.setString(std::to_string(scoreManager.getHighestScore()));
+    highScoreValue.setCharacterSize(22);
     highScoreValue.setFillColor(sf::Color(137, 4, 133, 225));
     
-    highScoreValue.setPosition(highScoreLabel.getPosition().x + highScoreLabel.getLocalBounds().width, 110.f);
+    highScoreValue.setPosition(highScoreLabel.getPosition().x + highScoreLabel.getGlobalBounds().width + 5.f, highScoreLabel.getPosition().y);
 
     // Score
     scoreLabel.setFont(font);
     scoreLabel.setString("Score: ");
-    scoreLabel.setCharacterSize(24);
+    scoreLabel.setCharacterSize(22);
     scoreLabel.setFillColor(sf::Color(63, 59, 125, 255));
-    scoreLabel.setPosition(50.f, 145.f);
+    scoreLabel.setPosition(box.getPosition().x + 10.f, box.getPosition().y + 70.f);
 
     scoreValue.setFont(font);
-    scoreValue.setString(std::to_string(score));
-    scoreValue.setCharacterSize(24);
+    scoreValue.setString(std::to_string(scoreManager.getScore()));
+    scoreValue.setCharacterSize(22);
     scoreValue.setFillColor(sf::Color(137, 4, 133, 225)); // Màu khác ở đây
 
-    scoreValue.setPosition(scoreLabel.getPosition().x + scoreLabel.getLocalBounds().width, 145.f);
+    scoreValue.setPosition(scoreLabel.getPosition().x + scoreLabel.getGlobalBounds().width + 5.f, scoreLabel.getPosition().y);
     
     // Restart
     restartText.setFont(font);
-    restartText.setString("Press R to Restart!");
-    restartText.setCharacterSize(24);
+    restartText.setString("Press [SPACE] to Restart!");
+    restartText.setCharacterSize(22);
     restartText.setFillColor(sf::Color::Red);
-    restartText.setPosition(50.f, 180.f);
+    restartText.setPosition(box.getPosition().x + 10.f, box.getPosition().y + 100.f);
 }
 
 void PlayGame::restart() {
-    //bird.reset();
-    //pipeManager.reset();
-    //scoreManager.reset();
-    gameState = Playing;
+    bird.reset();
+    pipeManager.reset();
+    scoreManager.reset();
+    gameState = Preparing;
 }
 
 void PlayGame::handleInput(const sf::Event& event, ScreenState& state) {
-    //if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
-    //    if (gameState == Playing) bird.flap();
-    //    else if (gameState == GameOver) restart();
-    //}
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
+        if (gameState == Playing) bird.flap();
+        else if (gameState == GameOver) restart();
+        else if (gameState == Preparing) {
+            gameState = Playing;
+            bird.flap();
+        }
+    }
 
     if (event.type == sf::Event::MouseButtonPressed) {
         sf::Vector2f mouse(sf::Mouse::getPosition(window));
 
-        if (backSprite.getGlobalBounds().contains(mouse)) {
+        if (backButton.getGlobalBounds().contains(mouse)) {
             state = ScreenState::MAINMENU;
         }
     }
 }
 
 void PlayGame::update(float dt) {
-    if (gameState != Playing) return;
-
-    //bird.update(dt);
-    //pipeManager.update(dt);
-
-    // Check collision
-    //if (pipeManager.checkCollision(bird.getBounds()) || bird.isOutOfBounds()) {
-    //    gameState = GameOver;
-    //}
-
-    // Update score
-    //if (pipeManager.birdPassedPipe(bird.getX())) {
-    //    scoreManager.increment();
-    //}
-
-    //scoreText.setString("Score: " + std::to_string(scoreManager.getScore()));
-    
+    if (gameState == GameOver) return;
     setupUI();
+
+    if (gameState == Playing) {
+        pipeManager.update(dt);
+
+        if (pipeManager.checkCollision(bird.getSprite(), bird.getImage()) || bird.isOutOfBounds()) {
+            gameState = Falling;
+        }
+
+        if (pipeManager.birdPassedPipe(bird.getX() + bird.getBounds().width / 2.f)) {
+            scoreManager.increaseScore();
+        }
+        scoreManager.update(dt);
+    }
+
+    if (gameState == Playing) bird.update(dt);
+    else bird.helper(dt);
+    if (gameState == Falling && bird.getY() > window.getSize().y - 10.f) {
+        gameState = GameOver;
+    }
+
+    sf::Vector2f mouse = (sf::Vector2f)sf::Mouse::getPosition(window);
+
+    float layer4Speed = 200.0f;
+    float deltaTime = 1.0f / 60.0f;
+    float layer4Width = playBoundsSprite1.getGlobalBounds().width;
+
+    playBoundsSprite1.move(-layer4Speed * deltaTime, 0);
+    playBoundsSprite2.move(-layer4Speed * deltaTime, 0);
+    playBoundsSprite3.move(-layer4Speed * deltaTime, 0);
+
+    // Đặt lại vị trí khi sprite ra khỏi màn hình
+    if (playBoundsSprite1.getPosition().x <= -layer4Width) {
+        playBoundsSprite1.setPosition(playBoundsSprite3.getPosition().x + layer4Width, 0);
+    }
+    if (playBoundsSprite2.getPosition().x <= -layer4Width) {
+        playBoundsSprite2.setPosition(playBoundsSprite1.getPosition().x + layer4Width, 0);
+    }
+    if (playBoundsSprite3.getPosition().x <= -layer4Width) {
+        playBoundsSprite3.setPosition(playBoundsSprite2.getPosition().x + layer4Width, 0);
+    }
+
+    isBackHovered = backButton.getGlobalBounds().contains(mouse);
+    backButton.setFillColor(isBackHovered ? sf::Color(7, 52, 153, 80) : sf::Color(7, 52, 153, 160));
 }
 
 void PlayGame::render() {
-    window.setView(window.getDefaultView());
-    window.draw(backgroundSprite);
+    window.draw(playBoundsSprite1);
+    window.draw(playBoundsSprite2);
+    window.draw(playBoundsSprite3);
 
-    // Vẽ game area
-    sf::RectangleShape rect(sf::Vector2f(game_w, game_h));
-    float posX = (window.getSize().x - rect.getSize().x) / 2.f;
-    float posY = (window.getSize().y - rect.getSize().y) / 2.f;
-    rect.setPosition(posX, posY);
-    rect.setFillColor(sf::Color(50, 150, 250));
-    window.draw(rect);
+    pipeManager.render(window);
+    bird.render(window);
+    scoreManager.render(window);
+    
+    if (gameState == Falling || gameState == GameOver) window.draw(overlay);
+    
+    // Khi GameOver, vẽ panel gồm tên, score vừa đạt và score kỉ lục.
+    if (gameState == GameOver) {
+        window.draw(box);
+        window.draw(playerLabelText);
+        window.draw(playerNameText);
+        window.draw(highScoreLabel);
+        window.draw(highScoreValue);
+        window.draw(scoreLabel);
+        window.draw(scoreValue);
+        window.draw(restartText);
+    }
 
-    // Vẽ panel làm nền, sau đó vẽ các văn bản
-    window.draw(panelSprite);
-    window.draw(playerLabelText);
-    window.draw(playerNameText);
-    window.draw(highScoreLabel);
-    window.draw(highScoreValue);
-    window.draw(scoreLabel);
-    window.draw(scoreValue);
-    window.draw(restartText);
-
-    window.draw(backSprite);
+    window.draw(backButton);
+    window.draw(backText);
 }

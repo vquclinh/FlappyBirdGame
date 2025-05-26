@@ -1,4 +1,4 @@
-﻿#include "SettingsScreen.h"
+﻿    #include "SettingsScreen.h"
 
 bool isMusicOn = true;
 
@@ -8,39 +8,24 @@ SettingsScreen::SettingsScreen(sf::RenderWindow& win) : window(win) {
     font.loadFromFile("assets/fonts/LilitaOne-Regular.ttf");
 
     // Load textures
-    backgroundTextureLayer1.loadFromFile("Assets/Images/layer-1.png");
-    backgroundSpriteLayer1.setTexture(backgroundTextureLayer1);
-    backgroundTextureLayer2.loadFromFile("Assets/Images/layer-2.png");
-    backgroundSpriteLayer2.setTexture(backgroundTextureLayer2);
-    backgroundTextureLayer3.loadFromFile("Assets/Images/layer-3.png");
-    backgroundSpriteLayer3.setTexture(backgroundTextureLayer3);
-    backgroundTextureLayer4.loadFromFile("Assets/Images/layer-4.png");
-    backgroundSpriteLayer4_1.setTexture(backgroundTextureLayer4);
-    backgroundSpriteLayer4_2.setTexture(backgroundTextureLayer4);
-    backgroundTextureLayer5.loadFromFile("Assets/Images/layer-5.png");
-    backgroundSpriteLayer5.setTexture(backgroundTextureLayer5);
-    backgroundTextureLayer6.loadFromFile("Assets/Images/layer-6.png");
-    backgroundSpriteLayer6_1.setTexture(backgroundTextureLayer6);
-    backgroundSpriteLayer6_2.setTexture(backgroundTextureLayer6);
+    backgroundTexture.loadFromFile("Assets/Images/background.png");
+    backgroundSprite1.setTexture(backgroundTexture);
+    backgroundSprite2.setTexture(backgroundTexture);
+    backgroundSprite3.setTexture(backgroundTexture);
 
     // Scale ảnh theo kích thước cửa sổ 
-    sf::Vector2u textureSize = backgroundTextureLayer1.getSize();
+    sf::Vector2u textureSize = backgroundTexture.getSize();
     sf::Vector2u windowSize = window.getSize();
     float scaleX = (float)windowSize.x / textureSize.x;
     float scaleY = (float)windowSize.y / textureSize.y;
 
-    backgroundSpriteLayer1.setScale(scaleX, scaleY);
-    backgroundSpriteLayer2.setScale(scaleX, scaleY);
-    backgroundSpriteLayer3.setScale(scaleX, scaleY);
-    backgroundSpriteLayer4_1.setScale(scaleX, scaleY);
-    backgroundSpriteLayer4_2.setScale(scaleX, scaleY);
-    backgroundSpriteLayer5.setScale(scaleX, scaleY);
-    backgroundSpriteLayer6_1.setScale(scaleX, scaleY);
-    backgroundSpriteLayer6_2.setScale(scaleX, scaleY);
+    backgroundSprite1.setScale(scaleX, scaleY);
+    backgroundSprite2.setScale(scaleX, scaleY);
+    backgroundSprite3.setScale(scaleX, scaleY);
 
-    // Đặt vị trí cho layer4 (hàng rào) và layer6 (mây) để liền mạch
-    backgroundSpriteLayer4_2.setPosition(windowSize.x, 0);
-    backgroundSpriteLayer6_2.setPosition(windowSize.x, 0);
+    // Đặt vị trí ban đầu cho Sprite2 và Sprite3
+    backgroundSprite2.setPosition(windowSize.x, 0);
+    backgroundSprite3.setPosition(windowSize.x * 2, 0);
 
     // Text và button
     float windowWidth = windowSize.x;
@@ -54,7 +39,7 @@ SettingsScreen::SettingsScreen(sf::RenderWindow& win) : window(win) {
 
     // Thiết lập backButton
     backButton.setSize({ 100, 50 });
-    backButton.setPosition(centerX - 75, 500); // Căn giữa button
+    backButton.setPosition(centerX - backButton.getGlobalBounds().width / 2, 500); // Căn giữa button
 
     // Thiết lập backText
     backText.setFont(font);
@@ -70,8 +55,8 @@ SettingsScreen::SettingsScreen(sf::RenderWindow& win) : window(win) {
     backText.setPosition(textX, textY);
 
     // Nút âm thanh
-    soundButton.setSize({ 250, 50 });
-    soundButton.setPosition(centerX - 125, 400);
+    soundButton.setSize({ 180, 40 });
+    soundButton.setPosition(centerX - soundButton.getGlobalBounds().width / 2, 400);
 
     soundText.setFont(font);
     soundText.setCharacterSize(24);
@@ -124,34 +109,22 @@ void SettingsScreen::update() {
     // Di chuyển layer4 (hàng rào) với tốc độ nhanh hơn
     float layer4Speed = 100.0f; // Pixel/giây
     float deltaTime = 1.0f / 60.0f; // Ta đã set Target FPS bên ngoài khi tạo window là 60FPS 
-    float layer4Width = backgroundSpriteLayer4_1.getGlobalBounds().width;
+    float layer4Width = backgroundSprite1.getGlobalBounds().width;
 
-    backgroundSpriteLayer4_1.move(-layer4Speed * deltaTime, 0);
-    backgroundSpriteLayer4_2.move(-layer4Speed * deltaTime, 0);
-
-    // Đặt lại vị trí khi sprite ra khỏi màn hình
-    if (backgroundSpriteLayer4_1.getPosition().x <= -layer4Width) {
-        backgroundSpriteLayer4_1.setPosition(layer4Width, 0);
-    }
-    if (backgroundSpriteLayer4_2.getPosition().x <= -layer4Width) {
-        backgroundSpriteLayer4_2.setPosition(layer4Width, 0);
-    }
-
-    // Di chuyển layer6 (mây) với tốc độ chậm hơn
-    float layer6Speed = 30.0f; // Pixel/giây
-    float layer6Width = backgroundSpriteLayer6_1.getGlobalBounds().width;
-
-    backgroundSpriteLayer6_1.move(-layer6Speed * deltaTime, 0);
-    backgroundSpriteLayer6_2.move(-layer6Speed * deltaTime, 0);
+    backgroundSprite1.move(-layer4Speed * deltaTime, 0);
+    backgroundSprite2.move(-layer4Speed * deltaTime, 0);
+    backgroundSprite3.move(-layer4Speed * deltaTime, 0);
 
     // Đặt lại vị trí khi sprite ra khỏi màn hình
-    if (backgroundSpriteLayer6_1.getPosition().x <= -layer6Width) {
-        backgroundSpriteLayer6_1.setPosition(layer6Width, 0);
+    if (backgroundSprite1.getPosition().x <= -layer4Width) {
+        backgroundSprite1.setPosition(backgroundSprite3.getPosition().x + layer4Width, 0);
     }
-    if (backgroundSpriteLayer6_2.getPosition().x <= -layer6Width) {
-        backgroundSpriteLayer6_2.setPosition(layer6Width, 0);
+    if (backgroundSprite2.getPosition().x <= -layer4Width) {
+        backgroundSprite2.setPosition(backgroundSprite1.getPosition().x + layer4Width, 0);
     }
-
+    if (backgroundSprite3.getPosition().x <= -layer4Width) {
+        backgroundSprite3.setPosition(backgroundSprite2.getPosition().x + layer4Width, 0);
+    }
     isBackHovered = backButton.getGlobalBounds().contains(mouse);
     backButton.setFillColor(isBackHovered ? sf::Color(7, 52, 153, 80) : sf::Color(7, 52, 153, 160));
 
@@ -160,14 +133,9 @@ void SettingsScreen::update() {
 }
 
 void SettingsScreen::draw() {
-    window.draw(backgroundSpriteLayer1);
-    window.draw(backgroundSpriteLayer2);
-    window.draw(backgroundSpriteLayer3);
-    window.draw(backgroundSpriteLayer4_1);
-    window.draw(backgroundSpriteLayer4_2);
-    window.draw(backgroundSpriteLayer5);
-    window.draw(backgroundSpriteLayer6_1);
-    window.draw(backgroundSpriteLayer6_2);
+    window.draw(backgroundSprite1);
+    window.draw(backgroundSprite2);
+    window.draw(backgroundSprite3);
 
     window.draw(title);
     window.draw(backButton);

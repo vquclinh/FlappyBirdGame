@@ -23,20 +23,10 @@ private:
     sf::Text title;
 
     // Background image
-    sf::Texture backgroundTextureLayer1;
-    sf::Sprite backgroundSpriteLayer1;
-    sf::Texture backgroundTextureLayer2;
-    sf::Sprite backgroundSpriteLayer2;
-    sf::Texture backgroundTextureLayer3;
-    sf::Sprite backgroundSpriteLayer3;
-    sf::Texture backgroundTextureLayer4;
-    sf::Sprite backgroundSpriteLayer4_1;
-    sf::Sprite backgroundSpriteLayer4_2;
-    sf::Texture backgroundTextureLayer5;
-    sf::Sprite backgroundSpriteLayer5;
-    sf::Texture backgroundTextureLayer6;
-    sf::Sprite backgroundSpriteLayer6_1;
-    sf::Sprite backgroundSpriteLayer6_2;
+    sf::Texture backgroundTexture;
+    sf::Sprite backgroundSprite1;
+    sf::Sprite backgroundSprite2;
+    sf::Sprite backgroundSprite3;
 
     float cloudX = 0.0f, fenceX = 0.0f;
 

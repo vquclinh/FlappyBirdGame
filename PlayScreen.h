@@ -3,9 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "Constants.h"
-//#include "Bird.h"
-//#include "PipeManager.h"
-//#include "ScoreManager.h"
+#include "Bird.h"
+#include "PipeManager.h"
+#include "ScoreManager.h"
 
 class PlayGame {
 public:
@@ -15,37 +15,35 @@ public:
     void render();
 
 private:
-    enum GameState { Playing, GameOver };
+    enum GameState { Playing, GameOver, Falling, Preparing };
     GameState gameState;
 
     sf::RenderWindow& window;
 
     // Background
-    sf::Texture backgroundTexture;
-    sf::Sprite backgroundSprite;
-
-    // Panel 
-    sf::Texture panelTexture;
-    sf::Sprite panelSprite;
+    sf::Texture playBoundsTexture;
+    sf::Sprite playBoundsSprite1;
+    sf::Sprite playBoundsSprite2;
+    sf::Sprite playBoundsSprite3;
 
     // UI
     sf::Font font;
     sf::Text playerLabelText, playerNameText, scoreLabel, highScoreLabel, scoreValue, highScoreValue, restartText;
 
-    int highestScore = 0;
-    int score = 0;
-
     // Game logic objects
-    //Bird bird;
-    //PipeManager pipeManager;
-    //ScoreManager scoreManager;
-
-    // Back Button
-    sf::Texture backTexture;
-    sf::Sprite backSprite;
-    bool isBackHovered = false;
+    Bird bird;
+    PipeManager pipeManager;
+    ScoreManager scoreManager;
 
     void loadBackground();
     void setupUI();
     void restart();
+
+    sf::RectangleShape overlay;
+    sf::RectangleShape box;
+
+    // Nút Back
+    bool isBackHovered = false;
+    sf::RectangleShape backButton;
+    sf::Text backText;
 };

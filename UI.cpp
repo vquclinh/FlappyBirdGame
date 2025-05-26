@@ -3,9 +3,9 @@
 UI::UI()
     : window(sf::VideoMode(Screen_w, Screen_h), "Flappy Bird"),
     currentState(ScreenState::MAINMENU),
-    menu(window),      // Truyền window vào constructor của MenuScreen
-    settings(window),  // Truyền window vào constructor của SettingsScreen
-    about(window),      // Truyền window vào constructor của AboutScreen
+    menu(window),
+    settings(window),
+    about(window),
     play(window)
 {
     window.setFramerateLimit(60);  // Giới hạn số khung hình
@@ -16,9 +16,9 @@ UI::UI()
 void UI::run() {
     float dt = clock.restart().asSeconds();
     while (window.isOpen()) {
-        processEvents();  // Xử lý sự kiện
-        update(dt);         // Cập nhật trạng thái
-        render();         // Vẽ lại cửa sổ
+        processEvents();
+        update(dt);
+        render();
     }
 }
 
@@ -26,18 +26,17 @@ void UI::processEvents() {
     sf::Event event;
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed)
-            window.close();  // Đóng cửa sổ nếu nhận sự kiện đóng
+            window.close();
 
         switch (currentState) {
         case ScreenState::MAINMENU:
-            menu.handleEvent(event, currentState);  // Xử lý sự kiện cho màn hình menu
+            menu.handleEvent(event, currentState);
             break;
         case ScreenState::SETTINGS:
-            settings.handleEvent(event, currentState);  // Xử lý sự kiện cho màn hình cài đặt
+            settings.handleEvent(event, currentState);
             break;
         case ScreenState::ABOUT:
-            about.handleEvent(event, currentState);  // Xử lý sự kiện cho màn hình giới thiệu
-            break;
+            about.handleEvent(event, currentState);
         case ScreenState::GAMEPLAY:
             play.handleInput(event, currentState);
             break;
@@ -49,13 +48,13 @@ void UI::update(float dt) {
     audio.Update();
     switch (currentState) {
     case ScreenState::MAINMENU:
-        menu.update();  // Cập nhật màn hình menu
+        menu.update();
         break;
     case ScreenState::SETTINGS:
-        settings.update();  // Cập nhật màn hình cài đặt
+        settings.update();
         break;
     case ScreenState::ABOUT:
-        about.update();  // Cập nhật màn hình giới thiệu
+        about.update();
         break;
     case ScreenState::GAMEPLAY:
         play.update(dt);
@@ -64,17 +63,17 @@ void UI::update(float dt) {
 }
 
 void UI::render() {
-    window.clear();  // Xóa màn hình
+    window.clear();
 
     switch (currentState) {
     case ScreenState::MAINMENU:
-        menu.draw();  // Vẽ menu
+        menu.draw();
         break;
     case ScreenState::SETTINGS:
-        settings.draw();  // Vẽ cài đặt
+        settings.draw();
         break;
     case ScreenState::ABOUT:
-        about.draw();  // Vẽ giới thiệu
+        about.draw();
         break;
     case ScreenState::GAMEPLAY:
         play.render();

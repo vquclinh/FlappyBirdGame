@@ -9,7 +9,7 @@ enum ScreenState {
     ABOUT
 };
 
-const int Screen_w = 1280;
+const int Screen_w = 480;
 const int Screen_h = 720;
 
 const int game_w = 480;
