@@ -106,8 +106,7 @@ void SettingsScreen::handleEvent(sf::Event& event, ScreenState& state) {
 void SettingsScreen::update() {
     sf::Vector2f mouse = (sf::Vector2f)sf::Mouse::getPosition(window);
 
-    // Di chuyển layer4 (hàng rào) với tốc độ nhanh hơn
-    float layer4Speed = 100.0f; // Pixel/giây
+    float layer4Speed = 200.0f; // Pixel/giây
     float deltaTime = 1.0f / 60.0f; // Ta đã set Target FPS bên ngoài khi tạo window là 60FPS 
     float layer4Width = backgroundSprite1.getGlobalBounds().width;
 

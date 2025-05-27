@@ -40,4 +40,5 @@ public:
 		const sf::Image& birdImage);
 	// Hàm check va chạm
 	bool checkCollision(const sf::Sprite& birdSprite, const sf::Image& birdImage);
+	bool checkBirdDead(const sf::Sprite& birdSprite);
 };

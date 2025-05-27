@@ -2,7 +2,7 @@
 #include <cstdlib> // Để dùng seed random (srand)
 #include <random>
 
-PipeManager::PipeManager() : spawnTimer(0.f), spawnInterval(0.4f), pipeSpeed(200.f), gapSize(140.f), minY(300.f), maxY(700.f) {
+PipeManager::PipeManager() : spawnTimer(0.f), spawnInterval(1.6f), pipeSpeed(43.f), gapSize(140.f), minY(300.f), maxY(550.f) {
 	pipeTexture.loadFromFile("Assets/Images/pipe1.png");
 	pipeImage.loadFromFile("Assets/Images/pipe1.png");
 	std::srand(static_cast<unsigned>(std::time(nullptr)));
@@ -126,3 +126,11 @@ bool PipeManager::pixelPerfectCollision(
 	return false;
 }
 
+bool PipeManager::checkBirdDead(const sf::Sprite& birdSprite) {
+	for (auto& pair : pipes) {
+		float center = pair.topPipe.getPosition().x + pair.topPipe.getGlobalBounds().width / 2;
+		if (birdSprite.getPosition().x + birdSprite.getGlobalBounds().width / 2 >= center && birdSprite.getPosition().y < 0) return false;
+	}
+
+	return true;
+}

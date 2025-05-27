@@ -106,7 +106,7 @@ void MenuScreen::handleEvent(sf::Event& event, ScreenState& state) {
 void MenuScreen::update() {
     sf::Vector2f mouse = (sf::Vector2f)sf::Mouse::getPosition(window);
 
-    float layer4Speed = 100.0f; // Pixel/giây
+    float layer4Speed = 200.0f;
     float deltaTime = 1.0f / 60.0f; // Giả sử 60 FPS
     float layer4Width = backgroundSprite1.getGlobalBounds().width;
 

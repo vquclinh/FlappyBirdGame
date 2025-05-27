@@ -135,7 +135,7 @@ void PlayGame::update(float dt) {
     if (gameState == Playing) {
         pipeManager.update(dt);
 
-        if (pipeManager.checkCollision(bird.getSprite(), bird.getImage()) || bird.isOutOfBounds()) {
+        if (pipeManager.checkCollision(bird.getSprite(), bird.getImage()) || bird.isOutOfBounds() || !pipeManager.checkBirdDead(bird.getSprite())) {
             gameState = Falling;
         }
 

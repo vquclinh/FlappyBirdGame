@@ -1,4 +1,5 @@
 ﻿#include "UI.h"
+#include <iostream>
 
 UI::UI()
     : window(sf::VideoMode(Screen_w, Screen_h), "Flappy Bird"),
@@ -14,8 +15,8 @@ UI::UI()
 }
 
 void UI::run() {
-    float dt = clock.restart().asSeconds();
     while (window.isOpen()) {
+        float dt = clock.restart().asSeconds();
         processEvents();
         update(dt);
         render();

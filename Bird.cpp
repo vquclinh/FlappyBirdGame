@@ -1,7 +1,7 @@
 ﻿#include "Bird.h"
 #include <iostream>
 
-Bird::Bird() : velocity(0.f), gravity(3500.f), flapStrength(-200.f), startPos(190.f, 450.f), animationTimer(0.f) {
+Bird::Bird() : velocity(0.f), gravity(3000.f), flapStrength(-750.f), startPos(190.f, 450.f), animationTimer(0.f) {
     texture1.loadFromFile("Assets/Images/bird1.png");
     texture2.loadFromFile("Assets/Images/bird2.png");
     birdImage.loadFromFile("Assets/Images/bird1.png");
@@ -35,13 +35,17 @@ void Bird::update(float dt) {
 
         velocity = std::min(velocity, 500.f);
         velocity = std::max(velocity, flapStrength);
-        sprite.move(0, velocity * dt * 15.f);
+        sprite.move(0, velocity * dt);
 
         timeSinceLastFlap += dt;
-        if (timeSinceLastFlap > 0.15f) {
-            float angle = velocity * 0.1f;
-            angle = std::min(std::max(angle, -20.f), 60.f);
-            sprite.setRotation(angle);
+        float currentRotation = sprite.getRotation();
+        if (timeSinceLastFlap > 0.5f) {
+            float targetAngle = 90.f;
+            float rotationSpeed = 300.f; // độ mỗi giây
+            float newRotation = currentRotation + rotationSpeed * dt;
+            if (newRotation > targetAngle) newRotation = targetAngle;
+
+            sprite.setRotation(newRotation);
         }
         else {
             sprite.setRotation(0);
@@ -66,7 +70,7 @@ void Bird::helper(float dt) {
 
         velocity = std::min(velocity, 500.f);
         velocity = std::max(velocity, flapStrength);
-        sprite.move(0, velocity * dt * 15.f);
+        sprite.move(0, velocity * dt * 1.5f);
 
         sprite.setRotation(90);
         sprite.setTexture(texture1);
