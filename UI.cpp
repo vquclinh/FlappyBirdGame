@@ -8,9 +8,14 @@ UI::UI()
     settings(window),
     about(window),
     play(window)
-{
+{   
     window.setFramerateLimit(60);  // Giới hạn số khung hình
+    if (!icon.loadFromFile("Assets/Images/bird1.png")) {
+        std::cerr << "Can't load icon.\n" << std::endl;
+    }
     
+    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+
     audio.Init();
 }
 

@@ -2,9 +2,15 @@
 #include <iostream>
 
 Bird::Bird() : velocity(0.f), gravity(3000.f), flapStrength(-750.f), startPos(190.f, 450.f), animationTimer(0.f) {
-    texture1.loadFromFile("Assets/Images/bird1.png");
-    texture2.loadFromFile("Assets/Images/bird2.png");
-    birdImage.loadFromFile("Assets/Images/bird1.png");
+    if (!texture1.loadFromFile("Assets/Images/bird1.png")) {
+        std::cerr << "Can't load texture1Bird.\n";
+    }
+    if (!texture2.loadFromFile("Assets/Images/bird2.png")) {
+        std::cerr << "Can't load texture2Bird.\n";
+    }
+    if (!birdImage.loadFromFile("Assets/Images/bird1.png")) {
+        std::cerr << "Can't load image bird.\n";
+    }
     sprite.setTexture(texture1);
 
     sf::FloatRect bounds = sprite.getLocalBounds();

@@ -154,12 +154,11 @@ void PlayGame::update(float dt) {
     sf::Vector2f mouse = (sf::Vector2f)sf::Mouse::getPosition(window);
 
     float layer4Speed = 200.0f;
-    float deltaTime = 1.0f / 60.0f;
     float layer4Width = playBoundsSprite1.getGlobalBounds().width;
 
-    playBoundsSprite1.move(-layer4Speed * deltaTime, 0);
-    playBoundsSprite2.move(-layer4Speed * deltaTime, 0);
-    playBoundsSprite3.move(-layer4Speed * deltaTime, 0);
+    playBoundsSprite1.move(-layer4Speed * dt, 0);
+    playBoundsSprite2.move(-layer4Speed * dt, 0);
+    playBoundsSprite3.move(-layer4Speed * dt, 0);
 
     // Đặt lại vị trí khi sprite ra khỏi màn hình
     if (playBoundsSprite1.getPosition().x <= -layer4Width) {

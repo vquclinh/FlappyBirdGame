@@ -1,7 +1,11 @@
 ﻿#include "MenuScreen.h"
+#include <iostream>
 
 MenuScreen::MenuScreen(sf::RenderWindow& win) : window(win), textBox(sf::Vector2f(0, 0), sf::Vector2f(50, 20), &font, 28){
-    font.loadFromFile("Assets/Fonts/LilitaOne-Regular.ttf");
+    if (!font.loadFromFile("Assets/Fonts/LilitaOne-Regular.ttf")) {
+        std::cerr << "Failed to load font!" << std::endl;
+        exit(1); // hoặc xử lý phù hợp
+    }
     init();
 }
 

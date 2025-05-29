@@ -1,10 +1,15 @@
 ﻿#include "PipeManager.h"
 #include <cstdlib> // Để dùng seed random (srand)
 #include <random>
+#include <iostream>
 
 PipeManager::PipeManager() : spawnTimer(0.f), spawnInterval(1.6f), pipeSpeed(43.f), gapSize(140.f), minY(300.f), maxY(550.f) {
-	pipeTexture.loadFromFile("Assets/Images/pipe1.png");
-	pipeImage.loadFromFile("Assets/Images/pipe1.png");
+	if(!pipeTexture.loadFromFile("Assets/Images/pipe1.png")){
+		std::cerr << "Can't load Pipe1.\n";
+	}
+	if (!pipeImage.loadFromFile("Assets/Images/pipe1.png")) {
+		std::cerr << "Can't load Image Pipe.\n";
+	}
 	std::srand(static_cast<unsigned>(std::time(nullptr)));
 }
 

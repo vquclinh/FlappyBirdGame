@@ -27,4 +27,5 @@ private:
     void render();
 
     sf::Clock clock;
+    sf::Image icon;
 };
