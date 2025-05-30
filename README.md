@@ -26,7 +26,7 @@ This is a Flappy Bird clone built using **C++14** and **SFML 2.6.2**, designed f
 
 ### Project Structure
 ```
-FlappyBird-SFML/
+FlappyBirdGame/
 ├── Assets/
 │   ├── Fonts/
 │   │   └── LilitaOne-Regular.ttf
