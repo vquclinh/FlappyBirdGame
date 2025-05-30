@@ -1,8 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <string>
-#include "Constants.h"
-#include "TextBox.h"
+#include "../../UI/Constants.h"
+#include "../../External/TextBox.h"
 
 class MenuScreen {
 public:

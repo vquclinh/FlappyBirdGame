@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="MenuScreen.h" />
-    <ClInclude Include="UI.h" />
-    <ClInclude Include="Constants.h" />
-    <ClInclude Include="AboutScreen.h" />
-    <ClInclude Include="SettingsScreen.h" />
-    <ClInclude Include="TextBox.h" />
-    <ClInclude Include="PlayScreen.h" />
-    <ClInclude Include="RoundedRectangleShape.h" />
-    <ClInclude Include="Bird.h" />
-    <ClInclude Include="PipeManager.h" />
-    <ClInclude Include="ScoreManager.h" />
+    <ClCompile Include="Src\External\RoundedRectangleShape.cpp" />
+    <ClCompile Include="Src\External\TextBox.cpp" />
+    <ClCompile Include="Src\Screens\AboutScreen\AboutScreen.cpp" />
+    <ClCompile Include="Src\Screens\MenuScreen\MenuScreen.cpp" />
+    <ClCompile Include="Src\Screens\PlayScreen\Bird.cpp" />
+    <ClCompile Include="Src\Screens\PlayScreen\PipeManager.cpp" />
+    <ClCompile Include="Src\Screens\PlayScreen\PlayScreen.cpp" />
+    <ClCompile Include="Src\Screens\PlayScreen\ScoreManager.cpp" />
+    <ClCompile Include="Src\Screens\SettingsScreen\SettingsScreen.cpp" />
+    <ClCompile Include="Src\UI\Constants.cpp" />
+    <ClCompile Include="Src\UI\main.cpp" />
+    <ClCompile Include="Src\UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MenuScreen.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="UI.cpp" />
-    <ClCompile Include="AboutScreen.cpp" />
-    <ClCompile Include="SettingsScreen.cpp" />
-    <ClCompile Include="Constants.cpp" />
-    <ClCompile Include="TextBox.cpp" />
-    <ClCompile Include="PlayScreen.cpp" />
-    <ClCompile Include="RoundedRectangleShape.cpp" />
-    <ClCompile Include="Bird.cpp" />
-    <ClCompile Include="PipeManager.cpp" />
-    <ClCompile Include="ScoreManager.cpp" />
+    <ClInclude Include="Src\External\RoundedRectangleShape.h" />
+    <ClInclude Include="Src\External\TextBox.h" />
+    <ClInclude Include="Src\Screens\AboutScreen\AboutScreen.h" />
+    <ClInclude Include="Src\Screens\MenuScreen\MenuScreen.h" />
+    <ClInclude Include="Src\Screens\PlayScreen\Bird.h" />
+    <ClInclude Include="Src\Screens\PlayScreen\PipeManager.h" />
+    <ClInclude Include="Src\Screens\PlayScreen\PlayScreen.h" />
+    <ClInclude Include="Src\Screens\PlayScreen\ScoreManager.h" />
+    <ClInclude Include="Src\Screens\SettingsScreen\SettingsScreen.h" />
+    <ClInclude Include="Src\UI\Constants.h" />
+    <ClInclude Include="Src\UI\UI.h" />
   </ItemGroup>
 </Project>

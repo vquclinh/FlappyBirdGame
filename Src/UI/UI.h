@@ -1,10 +1,10 @@
 ﻿#pragma once
 #include <SFML/Graphics.hpp>
-#include "MenuScreen.h"
-#include "SettingsScreen.h"
-#include "AboutScreen.h"
+#include "../Screens/MenuScreen/MenuScreen.h"
+#include "../Screens/SettingsScreen/SettingsScreen.h"
+#include "../Screens/AboutScreen/AboutScreen.h"
 #include "Constants.h"
-#include "PlayScreen.h"
+#include "../Screens/PlayScreen/PlayScreen.h"
 
 class UI {
 public:
