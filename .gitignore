@@ -10,7 +10,7 @@
 *.log
 
 # Visual Studio generated files
-*.vcxproj.userx 
+*.vcxproj.user 
 *.vcxproj.filters
 .vscode/
 Debug/
